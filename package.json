@@ -1,25 +1,32 @@
 {
-  "name": "exquiray-po-dashboard",
+  "name": "mijn-uitgaven",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest run tests/lib.test.js",
+    "test:e2e": "playwright test",
+    "icons": "node scripts/make-icons.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.52.1",
+    "papaparse": "^5.7.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "recharts": "^3.10.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.1",
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^4.6.0",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
-    "vite": "^7.3.6"
+    "vite": "^7.3.6",
+    "vitest": "^5.0.5"
   }
 }
