@@ -1,52 +1,24 @@
-# Exquiray PO Dashboard
+# Mijn Uitgaven
 
-Moderne React + Tailwind webapp voor product owners/service delivery management om lopende punten van Defensie en klantinteresse centraal te beheren.
+Responsive PWA (Vite + React + Tailwind) voor het analyseren van ING-banktransacties. Supabase is de database.
 
-## Stack keuze
+## Setup
 
-- Frontend: React (Vite, hooks)
-- Styling: Tailwind CSS
-- Backend + Auth + DB: Supabase (PostgreSQL)
-- Security: Supabase Auth + Row Level Security (RLS)
+1. `npm install`
+2. Kopieer `.env.example` naar `.env.local` en vul `VITE_SUPABASE_URL` en `VITE_SUPABASE_ANON_KEY` in.
+3. Voer `supabase/schema.sql` uit in de Supabase SQL-editor.
+4. `npm run dev`
 
-## Functionaliteiten
+**Demo-modus:** zonder Supabase-variabelen (of met `VITE_DEMO=true`) draait de app op localStorage. `VITE_DEMO_SEED=true` vult synthetische data.
 
-- Vier overzichtelijke lijsten:
-  - Openstaande functionele punten (Defensie)
-  - Nieuwe functionele wensen (Defensie)
-  - Algemene wensen (Defensie)
-  - Klantinteressepunten (met veld geinteresseerde klanten)
-- Opmerkingen per punt met automatische datum/tijd
-- Login/registratie per gebruiker
-- Data is strikt per gebruiker gescheiden
-- Responsive desktop-first UI
-- Dark mode toggle
+## Tests
 
-## Lokale start
+- Unit: `npm test`
+- E2E (6 viewports: 375, 393, 430, tablet 820, 1366, 1920): `npx playwright test`
+  - Zonder gedownloade browsers: `$env:PW_CHANNEL='msedge'`
 
-1. Installeer dependencies:
+## PWA / iPhone
 
-```bash
-npm install
-```
+Open de site in Safari, kies Deel → "Zet op beginscherm". De app start standalone. Alleen de app-shell wordt gecachet, nooit financiële data.
 
-2. Maak `.env` op basis van `.env.example` en vul Supabase waarden:
-
-```bash
-cp .env.example .env
-```
-
-3. Voer `supabase/schema.sql` uit in de Supabase SQL editor.
-
-4. Start de app:
-
-```bash
-npm run dev
-```
-
-## Security & best practices
-
-- RLS policies zorgen dat gebruikers alleen eigen data lezen/schrijven.
-- `user_id` wordt server-side gezet via DB triggers.
-- Input validatie op DB niveau met `check` constraints.
-- Frontend gebruikt minimale state-updates voor snelle interactie.
+Het tijdelijke icoon staat in `public/icons`; vervang de bestanden of pas `scripts/make-icons.mjs` aan en draai `npm run icons`.
